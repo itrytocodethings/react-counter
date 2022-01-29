@@ -10,3 +10,18 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+.wrap {
+    background-color: #1A1A2E;
+}
+
+.counter {
+    font-size: 3rem;
+}
+
+.counter .badge {
+    background-color: #16213E;
+    border-right: 3px solid #0F3460;
+    border-bottom: 3px solid #0F3460;
+    color: #ff526f;
+}
