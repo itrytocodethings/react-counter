@@ -9,14 +9,54 @@ import "../styles/index.css";
 import { Main } from "./component/main";
 
 //render your react application
-window.onload = () => {
-	let seconds = 0;
-	let windowCounter = setInterval(() => {
-		seconds++;
-		console.log(seconds);
+let seconds = 0;
+let isStopped = false;
+let customSeconds;
+
+let countID = setInterval(() => {
+	if (!isStopped && !(seconds < 0)) {
 		ReactDOM.render(
-			<Main seconds={seconds} />,
+			<Main
+				seconds={seconds}
+				stopCount={stopCount}
+				startCount={startCount}
+				setCount={setCount}
+			/>,
 			document.querySelector("#app")
 		);
-	}, 1000);
-};
+		customSeconds && !isStopped ? seconds-- : seconds++;
+	}
+	// else {
+	// 	ReactDOM.render(
+	// 		<Main
+	// 			seconds={seconds}
+	// 			stopCount={stopCount}
+	// 			startCount={startCount}
+	// 		/>,
+	// 		document.querySelector("#app")
+	// 	);
+	// }
+}, 1000);
+
+function stopCount() {
+	isStopped = true;
+	seconds = 0;
+}
+function startCount() {
+	if (isStopped) {
+		seconds = customSeconds ? customSeconds : seconds;
+		console.log(seconds);
+		isStopped = false;
+	}
+}
+function setCount(e) {
+	if (e.keyCode == 13) {
+		stopCount();
+		customSeconds = parseInt(
+			document.querySelector("#customSeconds").value
+		);
+		document.querySelector("#customSeconds").value = "";
+		console.log(customSeconds);
+		startCount();
+	}
+}

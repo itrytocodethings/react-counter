@@ -11,7 +11,8 @@
 
 */
 
-.wrap {
+.wrap,
+body {
     background-color: #1A1A2E;
 }
 
@@ -24,4 +25,12 @@
     border-right: 3px solid #0F3460;
     border-bottom: 3px solid #0F3460;
     color: #ff526f;
+}
+
+.btn-custom {
+    background-color: #16213E;
+    border-right: 3px solid #0F3460;
+    border-bottom: 3px solid #0F3460;
+    color: #ff526f;
+    margin-right: 1rem;
 }
