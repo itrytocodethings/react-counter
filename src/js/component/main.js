@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Main = ({ seconds, stopCount, startCount, setCount }) => {
+export const Main = ({ seconds, stopCount, startCount, setAlert }) => {
 	let secondsArr = seconds
 		.toString()
 		.padStart(6, 0)
@@ -26,7 +26,7 @@ export const Main = ({ seconds, stopCount, startCount, setCount }) => {
 						<input
 							id="customSeconds"
 							className="form-control"
-							onKeyUp={setCount}></input>
+							onKeyUp={setAlert}></input>
 					</div>
 				</div>
 			</div>

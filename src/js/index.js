@@ -10,53 +10,52 @@ import { Main } from "./component/main";
 
 //render your react application
 let seconds = 0;
-let isStopped = false;
-let customSeconds;
+let isStopped = true;
+let alertOn;
 
 let countID = setInterval(() => {
-	if (!isStopped && !(seconds < 0)) {
+	if (!isStopped) {
 		ReactDOM.render(
 			<Main
 				seconds={seconds}
 				stopCount={stopCount}
 				startCount={startCount}
-				setCount={setCount}
+				setAlert={setAlert}
 			/>,
 			document.querySelector("#app")
 		);
-		customSeconds && !isStopped ? seconds-- : seconds++;
+		seconds++;
+	} else {
+		ReactDOM.render(
+			<Main
+				seconds={seconds}
+				stopCount={stopCount}
+				startCount={startCount}
+				setAlert={setAlert}
+			/>,
+			document.querySelector("#app")
+		);
 	}
-	// else {
-	// 	ReactDOM.render(
-	// 		<Main
-	// 			seconds={seconds}
-	// 			stopCount={stopCount}
-	// 			startCount={startCount}
-	// 		/>,
-	// 		document.querySelector("#app")
-	// 	);
-	// }
 }, 1000);
 
 function stopCount() {
-	isStopped = true;
 	seconds = 0;
+	isStopped = true;
 }
+
 function startCount() {
 	if (isStopped) {
-		seconds = customSeconds ? customSeconds : seconds;
-		console.log(seconds);
+		seconds = 0;
 		isStopped = false;
 	}
 }
-function setCount(e) {
+
+function setAlert(e) {
 	if (e.keyCode == 13) {
 		stopCount();
-		customSeconds = parseInt(
-			document.querySelector("#customSeconds").value
-		);
+		console.log(e);
+		alertOn = parseInt(document.querySelector("#customSeconds").value);
 		document.querySelector("#customSeconds").value = "";
-		console.log(customSeconds);
 		startCount();
 	}
 }
